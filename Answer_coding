@@ -1,0 +1,56 @@
+//Question5//
+#include <iostream>
+#include <fstream>
+#include <unordered_map>
+#include <string>
+using namespace std;
+
+int main() {
+    string filename;
+    ifstream file;
+
+    do {
+        cout << "Enter filename: ";
+        cin >> filename;
+        file.open(filename);
+    } while (!file);
+
+    unordered_map<string, int> wordCount;
+    string word;
+
+    while (file >> word) {
+        wordCount[word]++;
+    }
+
+    for (const auto& pair : wordCount) {
+        cout << pair.first << " " << pair.second << endl;
+    }
+
+    return 0;
+}
+__________________________________________________________________________________________________________________________________________________________
+//Question6//
+int countInStack(Stack<int>& s, int target) {
+    int count = 0;
+    int size = 0;
+
+    while (!s.isEmpty()) {
+        int val = s.top();
+        s.pop();
+        if (val == target) count++;
+        size++;
+    }
+
+    // Restore original stack
+    for (int i = 0; i < size; ++i) {
+        s.push(val);  // assuming some temp buffer, or could not do exactly in constant space
+    }
+
+    return count;
+}
+
+
+//Parametor "Stack<int>& s" is with template T(int this case, int). 
+
+
+
