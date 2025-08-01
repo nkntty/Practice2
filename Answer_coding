@@ -49,6 +49,27 @@ int countInStack(Stack<int>& s, int target) {
     return count;
 }
 
+_________________________________________________________________________________________________________________________________________________________
+//Question7//
+struct AVLNode {
+    int data;
+    int height;
+    int size;
+    AVLNode* left;
+    AVLNode* right;
+};
+
+int findNth(AVLNode* root, int n) {
+    if (!root) return -1;
+
+    int leftSize = root->left ? root->left->size : 0;
+
+    if (n < leftSize) return findNth(root->left, n);
+    else if (n == leftSize) return root->data;
+    else return findNth(root->right, n - leftSize - 1);
+}
+
+
 
 //Parametor "Stack<int>& s" is with template T(int this case, int). 
 
