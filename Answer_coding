@@ -76,7 +76,14 @@ root->size is the total number of nodes in the subtree, not the index of root->d
 
 
 "? syntax"     (condition) ? (value_if_true) : (value_if_false);
-int leftSize = root->left ? root->left->size : 0;
+int leftSize = root->left ? root->left->size : 0;      root->left in condition means if the pointer is nullptr or not
+"Without ?"
+int leftSize;
+if (root->left != nullptr) {
+    leftSize = root->left->size;
+} else {
+    leftSize = 0;
+}
 
 
 
