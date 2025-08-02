@@ -48,7 +48,7 @@ int countInStack(Stack<int>& s, int target) {
 
     return count;
 }
-
+//Parametor "Stack<int>& s" is with template T(int this case, int). 
 _________________________________________________________________________________________________________________________________________________________
 //Question7//
 struct AVLNode {
@@ -69,9 +69,15 @@ int findNth(AVLNode* root, int n) {
     else return findNth(root->right, n - leftSize - 1);
 }
 
+❌ Issues in your code:
+Incorrect logic for indexing:
+
+root->size is the total number of nodes in the subtree, not the index of root->data in sorted order.
 
 
-//Parametor "Stack<int>& s" is with template T(int this case, int). 
+"? syntax"     (condition) ? (value_if_true) : (value_if_false);
+int leftSize = root->left ? root->left->size : 0;
+
 
 
 
