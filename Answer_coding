@@ -88,3 +88,60 @@ if (root->left != nullptr) {
 
 
 
+
+
+
+________________________________________________________________________________________________________________________________________________________
+//Question9//
+class Equipment {
+protected:
+    std::string serial;
+public:
+    Equipment(std::string s) : serial(s) {}
+    virtual void print() const = 0;
+    std::string getSerial() const { return serial; }
+    virtual ~Equipment() {}
+};
+
+class Laptop : public Equipment {
+    int ram;
+public:
+    Laptop(std::string s, int r) : Equipment(s), ram(r) {}
+    void print() const override {
+        std::cout << "Laptop SN: " << serial << ", RAM: " << ram << "GB\n";
+    }
+};
+
+class Projector : public Equipment {
+    int bulbLife;
+public:
+    Projector(std::string s, int b) : Equipment(s), bulbLife(b) {}
+    void print() const override {
+        std::cout << "Projector SN: " << serial << ", Bulb Life: " << bulbLife << " hrs\n";
+    }
+};
+
+
+
+#include <vector>
+
+class Composite {
+    std::vector<Equipment*> devices;
+public:
+    void printItem(int index) const {
+        if (index >= 0 && index < devices.size())
+            devices[index]->print();
+    }
+
+    Composite& operator+=(Equipment* e) {
+        devices.push_back(e);
+        return *this;
+    }
+
+    ~Composite() {
+        for (auto d : devices) delete d;
+    }
+};
+
+
+
