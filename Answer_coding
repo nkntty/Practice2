@@ -145,3 +145,16 @@ public:
 
 
 
+
+✅ Sample Usage:
+int main() {
+    Composite network;
+
+    network += new Laptop("LAP123", 16);
+    network += new Projector("PROJ456", 2000);
+
+    network.printItem(0);
+    network.printItem(1);
+}
+
+
