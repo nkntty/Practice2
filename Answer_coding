@@ -158,3 +158,16 @@ int main() {
 }
 
 
+❌ This compiles but is dangerous:
+Base b = Derived();  // ❌ Object slicing
+
+Base* ptr = new Derived();
+✔️ This is legal and safe because:
+
+A Derived is-a Base — it includes everything from Base. Plus, the ptr above points to the first part of the Derived class.
+You're only accessing the Base part (unless you're using virtual functions).
+
+Code Example	Concept Name	Explanation
+Base* ptr = new Derived();	Polymorphism or Upcasting	You can treat a derived object as a base (safe and common).
+Derived* ptr = new Base();	Invalid Downcasting	Not safe — base lacks derived-specific data/functions.
+Base b = Derived();	Object slicing	Only base portion gets copied — derived-specific data is "sliced off".
