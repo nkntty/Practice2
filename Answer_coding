@@ -148,14 +148,24 @@ public:
 
 ✅ Sample Usage:
 int main() {
-    Composite network;
+    Equipment* dell = new Laptop("abc123", 8096);        // heap-allocated pointer
+    Equipment* epson = new Projector("xyz34891", 10000); // heap-allocated pointer
 
-    network += new Laptop("LAP123", 16);
-    network += new Projector("PROJ456", 2000);
+    std::cout << "Dell:" << std::endl;
+    dell->print();  // -> because it's a pointer
 
-    network.printItem(0);
-    network.printItem(1);
+    std::cout << "Projector:" << std::endl;
+    epson->print();
+
+    Composite together;
+    together += dell;
+    together += epson;
+
+    std::cout << "************************" << std::endl;
+    std::cout << "Together: " << std::endl;
+    together.printItem(0);  // should print the dell info
 }
+
 
 
 ❌ This compiles but is dangerous:
